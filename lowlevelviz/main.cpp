@@ -16,8 +16,8 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(screenSize.x, screenSize.y), "Bubble Sort");
     sf::Event event;
-    const int arraySize = 100;
-    int* randomArrayPtr = GenerateRandomNumbers(10, 100, arraySize);
+    const int arraySize = 1500;
+    int* randomArrayPtr = GenerateRandomNumbers(5, 100, arraySize);
 
     for (int i = 0; i < 50; i++) {
         std::cout << randomArrayPtr[i] << std::endl;
@@ -46,6 +46,7 @@ int main()
 void DrawBar(sf::RenderWindow& window, sf::Vector2f size, sf::Vector2f position, sf::Color color) {
     RectangleShape bar(size);
     bar.setPosition(position);
+    bar.setFillColor(color);
     window.draw(bar);
 }
 
@@ -62,10 +63,9 @@ int* GenerateRandomNumbers(int min, int max, int size) {
 }
 
 void DrawAllBars(int* arrayPointer, const int arraySize, sf::RenderWindow& window) {
-    //int* randomArrayPtr = new int[arraySize];
-    for (int i = 0; i < arraySize; i++) {
-        DrawBar(window, sf::Vector2f(10.f, (float)arrayPointer[i] * -10), sf::Vector2f(i * 15.f, sf::VideoMode::getDesktopMode().height), sf::Color::Black);
-    }    
+    for (int i = 0; i < arraySize - 1; i++) {
+        DrawBar(window, sf::Vector2f((sf::VideoMode::getDesktopMode().width - 100) / arraySize, (float)arrayPointer[i] * -10), sf::Vector2f((float)(i * ((sf::VideoMode::getDesktopMode().width - 100 ) / arraySize)), sf::VideoMode::getDesktopMode().height), sf::Color::White);
+    }
 }
 
 
